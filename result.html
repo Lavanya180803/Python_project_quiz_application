@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <h2>Your Score: {{ score }} / {{ total }} ({{ percentage }}%)</h2>
+        <hr>
+        {% for ans in user_answers %}
+            <div class="question-block">
+                <p><strong>Q:</strong> {{ ans.question }}</p>
+                <p><strong>Your Answer:</strong> {{ ans.selected or "No answer" }}</p>
+                <p><strong>Correct Answer:</strong> {{ ans.correct }}</p>
+                {% if ans.is_correct %}
+                    <p style="color:green;"><strong>✔ Correct</strong></p>
+                {% else %}
+                    <p style="color:red;"><strong>✘ Incorrect</strong></p>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+        <a href="/">Try Again</a>
+    </div>
+</body>
+</html>
